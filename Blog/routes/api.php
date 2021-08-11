@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
-
+use App\Http\Controllers\VoteController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,6 +37,7 @@ Route::post('/update/{title}', [PostController::class, 'update']);
 Route::get('/deleteposts/{title}', [PostController::class, 'deleteposts']);
 Route::post('/addcomment', [CommentController::class, 'addcomment']);
 Route::post('/addtag', [TagController::class, 'addtag']);
+Route::post('/vote', [VoteController::class, 'vote']);
 
 
 

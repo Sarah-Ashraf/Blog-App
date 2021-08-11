@@ -35,7 +35,7 @@ class PostController extends Controller
             'title' => 'required',
             'body' => 'required',
             'user_id' => 'required',
-           // 'comment'=>'required'
+
             ]);
 
 
@@ -102,6 +102,8 @@ class PostController extends Controller
         $post->delete();
         return response()->json(['The Post has been deleted'],200);
     }
+
+
 
 
 }
