@@ -24,7 +24,7 @@ class CommentController extends Controller
         ]);
         //$post=Post::where('id',$id);
         $comment=new Comment();
-        $comment->user_id=$request->user_id;;//$request->user()->id;
+        $comment->user_id=$request->user_id;//$request->user()->id;
         $comment->post_id=$request->post_id;
         $comment->comment=$request->comment;
         $comment->save();

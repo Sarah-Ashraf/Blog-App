@@ -38,6 +38,7 @@ Route::get('/deleteposts/{title}', [PostController::class, 'deleteposts']);
 Route::post('/addcomment', [CommentController::class, 'addcomment']);
 Route::post('/addtag', [TagController::class, 'addtag']);
 Route::post('/vote', [VoteController::class, 'vote']);
+//Route::middleware('auth:api')->post('/vote/{comment_id}',[VoteController::class, 'vote']);
 
 
 

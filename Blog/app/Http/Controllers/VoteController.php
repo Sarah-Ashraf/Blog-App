@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Vote;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,42 +12,37 @@ use Illuminate\Support\Facades\Auth;
 
 class VoteController extends Controller
 {
-    public function vote($id)
-    {
-        if (Auth::user()) {
+    public $comment_id;
+        public $votes_sum;
+        //public $value=0;
+        public $voted=false;
 
-            if (Request::ajax())  {
+        public function mount ($comment_id,$votes_sum){
 
-            $vote = "1";
-            $user = Auth::user()->id;
-
-            $post = Comment::find($id);
-
-            $checkvotes = Vote::where('post_id', $post->id)
-                ->where('user_id', $user)
-                ->first();
-
-            if (empty($checkvotes))
-                    {
-                        $entry = new Vote;
-                        $entry->user_id = $user;
-                        $entry->post_id = $post->id;
-                        $entry->vote ="1";
-                        $entry->save();
-
-                    }
-
+            $comment = Comment::where('comment_id',$comment_id )->first();
+            $this->votes_sum=$votes_sum;
+        }
+        public function vote(Request $request)
+        {
+            if(Comment::where('comment_id',$this->comment_id)
+            ->count()>0){
+                $this->voted=true;
+                //$this->$value=$request->$value++;
+                return;
             }
 
+            $request ->validate([
+                'user_id'=>'required',
+                'comment_id'=>'required'
+            ]);
 
-        }
-        else
-        {
-            return "Not an AJAX request.";
+            $comment=new Vote();
+            $comment->user_id=$request->user_id;
+            $comment->comment_id=$request->comment_id;
+            $comment->save();
+            //$this->votes_sum += $value;
         }
 
-////////// mo4 3arfa a3mlha
-    }
 }
 
 
