@@ -44,5 +44,3 @@ Route::post('/vote', [VoteController::class, 'vote']);
 
 
 //Route::get('/', function () {return view('welcome');});
-
-

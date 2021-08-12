@@ -45,7 +45,6 @@ return [
             'driver' => 'token',
             'provider' => 'users',
             'hash' => false,
-            'expire' => 60,
         ],
     ],
 

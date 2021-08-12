@@ -2,47 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\Vote;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
-
+use App\Models\Vote;
 
 class VoteController extends Controller
 {
-    public $comment_id;
-        public $votes_sum;
+        //public $comment_id;
+        //public $votes_sum;
         //public $value=0;
-        public $voted=false;
+        //public $voted=false;
 
-        public function mount ($comment_id,$votes_sum){
-
-            $comment = Comment::where('comment_id',$comment_id )->first();
-            $this->votes_sum=$votes_sum;
-        }
         public function vote(Request $request)
         {
-            if(Comment::where('comment_id',$this->comment_id)
-            ->count()>0){
-                $this->voted=true;
-                //$this->$value=$request->$value++;
-                return;
-            }
 
             $request ->validate([
                 'user_id'=>'required',
-                'comment_id'=>'required'
+                'post_id'=>'required',
+                'comment_id'=>'required',
+                'vote_value'=>'required'
             ]);
 
-            $comment=new Vote();
+            $comment=new Vote;
             $comment->user_id=$request->user_id;
+            $comment->post_id=$request->post_id;
             $comment->comment_id=$request->comment_id;
+            $comment->vote_value=$request->vote_value;
             $comment->save();
             //$this->votes_sum += $value;
         }
-
 }
-
-

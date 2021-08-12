@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+
     use HasFactory;
     protected $fillable =['comment','user_id'];
     public function post()
@@ -22,6 +23,4 @@ class Comment extends Model
     public function votes() {
         return $this->hasMany(Vote::class);
     }
-
-
 }
